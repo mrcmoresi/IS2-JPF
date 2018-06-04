@@ -70,7 +70,7 @@ JPF no presenta interfaz gr\'afica propia, pero permite ser ejecutado de diversa
 Adem\'as se puede ejecutar desde JUnit el framework de java para escribir Unit Test.
 
 
-\section{Aspectos técnicos de la herramienta}
+\section{Aspectos t\'ecnicos de la herramienta}
 
 JPF fue dise\~nanda en base a dos abstracciones, la VM (m\'aquina virtual), y Search Component.
 La encargada de generar los estados es la VM, mediante la ejecuci\'on de instrucciones en Java Byte Code, la VM  genera la representaci\'on de los estados, los cuales pueden ser:
@@ -94,16 +94,16 @@ JPF tiene manejo expl\'icito de estados, lo realiza creando instancias de la cla
 \section{Casos de estudio de la herramienta}
 
 Los primeros usos que se le dio a esta herramienta fueron para proyectos de la NASA, dado que era privativo el software, entre ellos se destacan proyectos como la verificaci\'on del software del NASA Ames K9 Rover [3] que es una plataforma para veh\'iculos aut\'onomos para reconocimiento de suelo de planetas tales como Marte.
-Otro uso significativo, por parte de la NASA, fue usarlo para traducir gr\'aficos de estados UML, permitiendo as\'i una relaci\'on uno a uno con el modelo en UML y c\'odigo escrito en Java, que es m\'as fácil de leer [4].\\
+Otro uso significativo, por parte de la NASA, fue usarlo para traducir gr\'aficos de estados UML, permitiendo as\'i una relaci\'on uno a uno con el modelo en UML y c\'odigo escrito en Java, que es m\'as f\'acil de leer [4].\\
 A su vez, fue utilizado en un sistema para aviones comerciales (The DEOS Avionics Operating System), implementado en C++. Este sistema fue llevado a la NASA para su verificaci\'on, siendo necesarias, adem\'as de la traducci\'on a Java, t\'ecnicas de reducci\'on de estados como $POR$, ya que de otra manera el error no era encontrado.\\
-Tambi\'en se puede mencionar, el uso de esta herramienta por la empresa japonesa Fujitsu (3ra en ranking de empresas de IT), la cual uso JPF, en modo simb\'olico (SPF), para analizar una cantidad de datos masiva.
-Por \'ultimo, podemos mencionar la existencia de muchos casos de estudios realizados en Google Summer of Code, donde un estudiante realiza un proyecto con la ayuda de su mentor, utilizando JPF. Algunos de los proyectos que podemos mencionar son: 
-JPF for android Devices es un proyecto de Google Summer of Code 2016 que pretende incorporar JPF en android, brindando t\'ecnicas de verificaci\'on para encontrar bugs en aplicaciones android.
+Tambi\'en se puede mencionar, el uso de esta herramienta por la empresa japonesa Fujitsu[5] (3ra en ranking de empresas de IT), la cual uso JPF, en modo simb\'olico (SPF), para analizar una cantidad de datos masiva.
+Por \'ultimo, podemos mencionar la existencia de muchos casos de estudios realizados en Google Summer of Code[6], donde un estudiante realiza un proyecto con la ayuda de su mentor, utilizando JPF. Algunos de los proyectos que podemos mencionar son: 
+JPF for android Devices[7] es un proyecto de Google Summer of Code 2016 que pretende incorporar JPF en android, brindando t\'ecnicas de verificaci\'on para encontrar bugs en aplicaciones android.
 Extending SPF es una herramienta de ejecuci\'on simb\'olica basada en JPF. Ejecuta el JavaBytecode usando un JVM personalizada para realizar su an\'alisis.
 
 
 \section{Caso de estudio elegido}
-A continuaci\'on explicaremos el caso de estudio elegido, donde el objetivo del mismo fue comparar 3 tecnicas diferentes (Model Checking(MC), Runtime Analysis(RA) y Testing(TT)), para detectar bugs como Deadlocks, Data Race y Plan Semantics sobre 3 versiones del codigo del NASA Ames K9 Rover.
+A continuaci\'on explicaremos el caso de estudio elegido, donde el objetivo del mismo fue comparar 3 tecnicas diferentes (Model Checking(MC), Runtime Analysis(RA) y Testing(TT)), para detectar bugs como Deadlocks, Data Race y Plan Semantics sobre 3 versiones del codigo del NASA Ames K9 Rover[3].
 Dada la complejidad de crear un experimento como este, result\'o imposible reportar conclusiones v\'alidas de manera est\'atica, por eso s\'olo se concentraron en los resultados de MC, RA y TT. Cabe destacar que la herramienta utilizada para realizar MC fue JPF, y haremos foco en el uso de la misma, aunque el an\'alisis que se realiza en este caso de estudio surge de la comparaci\'on con las otras t\'ecnicas mencionadas.
 
 \begin{figure}[H]
@@ -140,8 +140,9 @@ Cuando se utiliza JPF como model checker, es interesante obtener las trazas que 
 \section{Conclusiones particulares}
 
 JPF fue desarrollada con el objetivo de que sea una herramienta dinamica y con la posibilidad de extenderla y/o adecuarla seg\'un el analisis o estudio que se quiera realizar. La gran desventaja que tiene es que requiere grandes esfuerzos de configuraci\'on, ya que se se deben setear propiedades, las cuales en muchos casos son dificiles de entender e implementar y al momento de especificar software critico lo es m\'as a\'un, aunque en este caso, JPF es la solucion ideal (No es casualidad que sea utilizado por la NASA). Pero todo esto genera que muchos usuarios no lo vean factible al uso de JPF.
-No trabaja independientemente, ya que necesita de una terminal o IDEs, configuraciones y modulos especificos para poder ejecutarlo y reportar resultados. Su instalaci\'on no es muy complicada, pero si puede serlo si no se cuenta de antemano con las herramientas que necesita JPF para poder ejecutarse. Al no contar con interfaz gr\'afica propia, se torna mas dificil su uso, aunque lo positivo es que existen plugins que lo hacen menos tedioso.
-Como conclusi\'on, m\'as all\'a de la complejidad de JPF en su todo, es una herramienta muy completa, que puede solucionar problemas sobre diversos campos de ejecuci\'on, de manera efectiva, segun sus configuraciones y optimizaciones. Adem\'as, al ser una herramienta que trabaja puramente con java, lo hace mas \'util y popular a\'in.
+No trabaja independientemente, ya que necesita de una terminal o IDEs, configuraciones y modulos especificos para poder ejecutarlo y reportar resultados. Su instalaci\'on no es muy complicada, pero si puede serlo si no se cuenta de antemano con las herramientas que necesita JPF para poder ejecutarse. Al no contar con interfaz gr\'afica propia, se torna mas dificil su uso, aunque lo positivo es que existen plugins que lo hacen menos tedioso.\\
+El constante desarrollo y creaci\'on de extensiones que se realiza en los principales eventos relacionados a la herramienta (Google Summer of Code[7] y Java PathFinder Workshop[8]) permiten que la herramienta est\'e vigente todo el tiempo, amoldandos\'e a las necesidades de los usuarios.\\
+Como conclusi\'on, m\'as all\'a de la complejidad de JPF en su todo, es una herramienta muy completa, que puede solucionar problemas sobre diversos campos de ejecuci\'on, de manera efectiva, seg\'un sus configuraciones y optimizaciones. Adem\'as, al ser una herramienta que trabaja puramente con java, lo hace mas \'util y popular a\'in.
 
 
 %
@@ -155,20 +156,25 @@ Como conclusi\'on, m\'as all\'a de la complejidad de JPF en su todo, es una herr
 %
 \begin{thebibliography}{8}
 \bibitem{ref_url1}
-Documentacion anterior\url{https://babelfish.arc.nasa.gov/}.
+Documentacion anterior \url{https://babelfish.arc.nasa.gov/}
 
 \bibitem{ref_url1}
-Documentacion vigente\url{https://github.com/javapathfinder/jpf-core/wiki}.
+Documentacion vigente \url{https://github.com/javapathfinder/jpf-core/wiki}
 
 \bibitem{ref_url1}
 Experimental Evaluation of Verification and Validation Tools on Martian Rover Software.
 
 \bibitem{ref_url1}
-Trust Your Model - Verifying Aerospace System Models with Java™ Pathfinder.\url{https://ti.arc.nasa.gov/m/pub-archive/1402/1402\%20(Mehlitz).pdf}.
+Trust Your Model - Verifying Aerospace System Models with Java™ Pathfinder.
 
-\bibitem{ref_book1}
-Willem Visser, Guillaume Brat, Klaus Havelund, SeungJoon Park. Model Checking
-Programs. 3–12. 2000
+\bibitem{ref_url1}
+Fujitsu - \url{http://www.fujitsu.com/global/}
+
+\bibitem{ref_url1}
+Google Summer of Code - \url{https://summerofcode.withgoogle.com/?csw=1}
+
+\bibitem{ref_url1}
+Java PathFinder for Android Devices - \url{https://bitbucket.org/matsurago/jpf-mobile-devices/wiki/Home}
 
 \end{thebibliography}
 \end{document}
