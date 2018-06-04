@@ -36,8 +36,8 @@ Moresi Marco}
 \maketitle              % typeset the header of the contribution
 %
 \begin{abstract}
-Esta investigación fue centrada en el funcionamiento de la herramienta Java Path Finder, la cual permite verificar programas escritos en Java. Se investigó sobre distintos aspectos técnicos de la misma como así también aspectos de usabilidad e interacción con el usuario.
-Dado lo versátil de la herramienta, decidimos acotar la investigación sólo al uso de JPF como model checker de programas concurrentes. Esta investigación aporta un análisis para aquellos nuevos usuarios de esta herramienta desarrollada por la NASA y hoy de código abierto.
+Esta investigaci\'on se centr\'o en el funcionamiento de la herramienta Java Path Finder, la cual permite verificar programas escritos en Java. Se investig\'o sobre distintos aspectos t\'ecnicos de la misma como as\'i tambi\'en aspectos de usabilidad e interacción con el usuario.
+Dado lo vers\'atil de la herramienta, decidimos acotar la investigaci\'on s\'olo al uso de JPF como model checker de programas concurrentes. Esta investigaci\'on aporta un an\'alisis para aquellos nuevos usuarios de esta herramienta desarrollada por la NASA y hoy de c\'odigo abierto.
 
 
 \keywords{JPF \and Model Checker \and Java.}
@@ -45,10 +45,10 @@ Dado lo versátil de la herramienta, decidimos acotar la investigación sólo al
 %
 %
 %
-\section{Contexto de creación de la herramienta}
+\section{Contexto de creaci\'on de la herramienta}
 
-Java Path Finder, también como conocido como JPF,  se comenzó a desarrollar en el año  1999 como un traductor de Java a Promela (usando Spin como model checker). Para el año 2000, se convirtió en una herramienta de model checker por si sola, dejando de lado la utilización de Spin. Las primeras etapas fueron desarrolladas por el grupo Robust Software Engineering en la NASA Ames Research Center, junto con el apoyo de organizaciones tales como RIACS (The Research Institute for Advanced Computer Science).
-En el año 2005 se convirtió en una herramienta de código abierto. Actualmente, se encuentra disponible de manera gratuita y en desarrollo continuo gracias al apoyo de más de 20 universidades de todo el mundo.
+Java Path Finder, tambi\'en como conocido como JPF,  se comenz\'o a desarrollar en el año  1999 como un traductor de Java a Promela (usando Spin como model checker). Para el año 2000, se convirti\'o en una herramienta de model checker por si sola, dejando de lado la utilizaci\'on de Spin. Las primeras etapas fueron desarrolladas por el grupo Robust Software Engineering en la NASA Ames Research Center, junto con el apoyo de organizaciones tales como RIACS (The Research Institute for Advanced Computer Science).
+En el a\~no 2005 se convirti\'o en una herramienta de c\'odigo abierto. Actualmente, se encuentra disponible de manera gratuita y en desarrollo continuo gracias al apoyo de m\'as de 20 universidades de todo el mundo.
 
 \begin{figure}
 \includegraphics[width=\textwidth]{fig1.png}
@@ -59,21 +59,21 @@ En el año 2005 se convirtió en una herramienta de código abierto. Actualmente
 
 
 
-El objetivo de JPF depende como se configure la herramienta, el núcleo principal de JPF es una Java Virtual Machine que ejecuta código compilado de Java (Java Bytecode). Es utilizado para detectar defectos, para lo cual, JPF toma como entrada el programa a verificar y la configuración que se desea verificar (archivo .jpf). JPF devolverá un reporte describiendo si las propiedades de la configuración se mantienen y/o que artefactos de verificación han sido creados por JPF para su posterior análisis. 
-Un conjunto de instrucciones por defecto hace uso de una caracteristica importante de JPF: execution choices. JPF puede identificar puntos en el programa donde la ejecuci\'on puede proceder de diferentes maneras, luego explora sistematicamente cada uno de estos puntos, es decir, JPF ejecuta todos los paths. En cuanto al numero de paths, puede crecer exponencialmente (esto es llamado como state explosion problem). Para lidiar con esto, JPF emplea una linea de defensa llamada state matching: cada vez que JPF alcanza un choice point, checkea si ya ha visto un estado similar en el programa y en tal caso, abandona ese path, realiza un backtrack a un choice point previo que tenga choices no exploradas y procede desde alli. 
-En caso de ejecutar sin una configuración propia, por defecto JPF verificará el programa en búsqueda de deadlocks y excepciones no controladas (unhandled exceptions). Estas son llamadas propiedades non-funcional. Pero como se menciono previamente, el usuario puede definir propiedades espec\'ificas, que en su mayoria, se realizan con los llamados listeners (pequeños ‘plugins’ que permiten monitorear con mas detalle todas las acciones que va tomando JPF). Todo explica porque JPF es llamado "a debugger toolbox on steroids", primero automáticamente ejecuta el programa de entrada en todas sus formas posibles para detectar defectos y cuando los encuentra muestra una explicación de que lo causó.
+El objetivo de JPF depende como se configure la herramienta, el n\'ucleo principal de JPF es una Java Virtual Machine que ejecuta c\'odigo compilado de Java (Java Bytecode). Es utilizado para detectar defectos, para lo cual, JPF toma como entrada el programa a verificar y la configuraci\'on que se desea verificar (archivo .jpf). JPF devolver\'a un reporte describiendo si las propiedades de la configuraci\'on se mantienen y/o que artefactos de verificaci\'on han sido creados por JPF para su posterior an\'alisis. 
+Un conjunto de instrucciones por defecto hace uso de una caracteristica importante de JPF: execution choices. JPF puede identificar puntos en el programa donde la ejecuci\'on puede proceder de diferentes maneras, luego explora sistem\'aticamente cada uno de estos puntos, es decir, JPF ejecuta todos los paths. En cuanto al numero de paths, puede crecer exponencialmente (esto es llamado como state explosion problem). Para lidiar con esto, JPF emplea una linea de defensa llamada state matching: cada vez que JPF alcanza un choice point, checkea si ya ha visto un estado similar en el programa y en tal caso, abandona ese path, realiza un backtrack a un choice point previo que tenga choices no exploradas y procede desde alli. 
+En caso de ejecutar sin una configuraci\'on propia, por defecto JPF verificar\'a el programa en b\'usqueda de deadlocks y excepciones no controladas (unhandled exceptions). Estas son llamadas propiedades non-funcional. Pero como se mencion\'o previamente, el usuario puede definir propiedades espec\'ificas, que en su mayoria, se realizan con los llamados listeners (peque\~nos ‘plugins’ que permiten monitorear con mas detalle todas las acciones que va tomando JPF). Todo explica porque JPF es llamado "a debugger toolbox on steroids", primero autom\'aticamente ejecuta el programa de entrada en todas sus formas posibles para detectar defectos y cuando los encuentra muestra una explicaci\'on de que lo caus\'o.
 
 
-\section{Descripción de la herramienta del lado del usuario}
+\section{Descripci\'on de la herramienta del lado del usuario}
 
-JPF no presenta interfaz gráfica propia, pero permite ser ejecutado de diversas maneras. Se puede utilizar desde la linea de comandos, como asi tambi\'en desde los diversos IDE de desarrollo para Java como NetBeans o Eclipse donde es necesario instalar los plugins correspondientes. Como si esto fuera poco se puede integrar JPF al programa de Java como una clase embebida.
-Además se puede ejecutar desde JUnit el framework de java para escribir Unit Test.
+JPF no presenta interfaz gr\'afica propia, pero permite ser ejecutado de diversas maneras. Se puede utilizar desde la linea de comandos, como asi tambi\'en desde los diversos IDE de desarrollo para Java como NetBeans o Eclipse donde es necesario instalar los plugins correspondientes. Como si esto fuera poco se puede integrar JPF al programa de Java como una clase embebida.
+Adem\'as se puede ejecutar desde JUnit el framework de java para escribir Unit Test.
 
 
 \section{Aspectos técnicos de la herramienta}
 
-JPF fue diseñanda en base a dos abstracciones, la VM (máquina virtual), y Search Component.
-La encargada de generar los estados es la VM, mediante la ejecución de instrucciones en Java Byte Code, la VM  genera la representación de los estados, los cuales pueden ser:
+JPF fue dise\~nanda en base a dos abstracciones, la VM (m\'aquina virtual), y Search Component.
+La encargada de generar los estados es la VM, mediante la ejecuci\'on de instrucciones en Java Byte Code, la VM  genera la representaci\'on de los estados, los cuales pueden ser:
 
 \begin{itemize}
 \item Verificados por igualdad (es decir, si el estado ha sido visitado antes).
@@ -82,29 +82,29 @@ La encargada de generar los estados es la VM, mediante la ejecución de instrucc
 \item Restaurados.
 \end{itemize}
 
-Search Component es el responsable de elegir el siguiente estado que se ejecutará, la ejecuci\'on puede ser parametrizada: $forward$, genera el siguiente estado y reporta si el mismo tiene sucesor (en caso de tener sucesor, guardará el estado en una pila backtrack), $backtrack$, restaura el último estado en la pila backtrack, $restoreState$ restaura un estado arbitrario (no necesariamente de la pila backtrack).
+Search Component es el responsable de elegir el siguiente estado que se ejecutar\'a, la ejecuci\'on puede ser parametrizada: $forward$, genera el siguiente estado y reporta si el mismo tiene sucesor (en caso de tener sucesor, guardar\'a el estado en una pila backtrack), $backtrack$, restaura el \'ultimo estado en la pila backtrack, $restoreState$ restaura un estado arbitrario (no necesariamente de la pila backtrack).
 
-Más aún puede ser configurado para usar diferentes estrategias de búsqueda tales como DFS, cola de prioridades, entre otros.
-El número de las diferentes combinaciones de scheduling crece exponencialmente a medida que crecen los programas. Para atacar esta dificultad JPF implementa $Partial Order Reduction (POR)$, esta técnica consta de agrupar todas las instrucciones en un thread que no tienen efecto en otros threads, de modo que sea una sola transición en el sistema de estados. Esta técnica suele reducir el espacio de estados en un 70\%.
-Si $POR$ está habilitado, la máquina virtual ejecutará todo el thread en caso de recibir un request forward hasta que ocurra alguna de las siguientes posibilidades: la siguiente instrucción es relevante para el scheduling o bien la siguiente instrucción contiene un resultado no determinístico.
+M\'as a\'un puede ser configurado para usar diferentes estrategias de b\'usqueda tales como DFS, cola de prioridades, entre otros.
+El n\'umero de las diferentes combinaciones de scheduling crece exponencialmente a medida que crecen los programas. Para atacar esta dificultad JPF implementa $Partial Order Reduction (POR)$, esta t\'ecnica consta de agrupar todas las instrucciones en un thread que no tienen efecto en otros threads, de modo que sea una sola transici\'on en el sistema de estados. Esta t\'ecnica suele reducir el espacio de estados en un 70\%.
+Si $POR$ est\'a habilitado, la máquina virtual ejecutar\'a todo el thread en caso de recibir un request forward hasta que ocurra alguna de las siguientes posibilidades: la siguiente instrucci\'on es relevante para el scheduling o bien la siguiente instrucci\'on contiene un resultado no determin\'istico.
 
-JPF tiene manejo explícito de estados, lo realiza creando instancias de la clase SystemState para encapsular información relevante para la ejecución: tales como estado del thread, pila, cola, valores de las variables locales, entre otra información.
+JPF tiene manejo expl\'icito de estados, lo realiza creando instancias de la clase SystemState para encapsular informaci\'on relevante para la ejecuci\'on: tales como estado del thread, pila, cola, valores de las variables locales, entre otra informaci\'on.
 
 
 \section{Casos de estudio de la herramienta}
 
-Los primeros usos que se le dio a esta herramienta fueron para proyectos de la NASA, dado que era privativo el software, entre ellos se destacan proyectos como la verificación del software del NASA Ames K9 Rover [3] que es una plataforma para vehículos autónomos para reconocimiento de suelo de planetas tales como Marte.
-Otro uso significativo, por parte de la NASA, fue usarlo para traducir gráficos de estados UML, permitiendo así una relación uno a uno con el modelo en UML y código escrito en Java, que es más fácil de leer [4].\\
-A su vez, fue utilizado en un sistema para aviones comerciales (The DEOS Avionics Operating System), implementado en C++. Este sistema fue llevado a la NASA para su verificación, siendo necesarias, además de la traducción a Java, t\'ecnicas de reducci\'on de estados como $POR$, ya que de otra manera el error no era encontrado.\\
-También se puede mencionar, el uso de esta herramienta por la empresa japonesa Fujitsu (3ra en ranking de empresas de IT), la cual uso JPF, en modo simbólico (SPF), para analizar una cantidad de datos masiva.
-Por último, podemos mencionar la existencia de muchos casos de estudios realizados en Google Summer of Code, donde un estudiante realiza un proyecto con la ayuda de su mentor, utilizando JPF. Algunos de los proyectos que podemos mencionar son: 
-JPF for android Devices es un proyecto de Google Summer of Code 2016 que pretende incorporar JPF en android, brindando tecnicas de verificacion para encontrar bugs en aplicaciones android.
-Extending SPF es una herramienta de ejecucion simbolica basada en JPF. Ejecuta el JavaBytecode usando un JVM personalizada para realizar su analisis.
+Los primeros usos que se le dio a esta herramienta fueron para proyectos de la NASA, dado que era privativo el software, entre ellos se destacan proyectos como la verificaci\'on del software del NASA Ames K9 Rover [3] que es una plataforma para veh\'iculos aut\'onomos para reconocimiento de suelo de planetas tales como Marte.
+Otro uso significativo, por parte de la NASA, fue usarlo para traducir gr\'aficos de estados UML, permitiendo as\'i una relaci\'on uno a uno con el modelo en UML y c\'odigo escrito en Java, que es m\'as fácil de leer [4].\\
+A su vez, fue utilizado en un sistema para aviones comerciales (The DEOS Avionics Operating System), implementado en C++. Este sistema fue llevado a la NASA para su verificaci\'on, siendo necesarias, adem\'as de la traducci\'on a Java, t\'ecnicas de reducci\'on de estados como $POR$, ya que de otra manera el error no era encontrado.\\
+Tambi\'en se puede mencionar, el uso de esta herramienta por la empresa japonesa Fujitsu (3ra en ranking de empresas de IT), la cual uso JPF, en modo simb\'olico (SPF), para analizar una cantidad de datos masiva.
+Por \'ultimo, podemos mencionar la existencia de muchos casos de estudios realizados en Google Summer of Code, donde un estudiante realiza un proyecto con la ayuda de su mentor, utilizando JPF. Algunos de los proyectos que podemos mencionar son: 
+JPF for android Devices es un proyecto de Google Summer of Code 2016 que pretende incorporar JPF en android, brindando t\'ecnicas de verificaci\'on para encontrar bugs en aplicaciones android.
+Extending SPF es una herramienta de ejecuci\'on simb\'olica basada en JPF. Ejecuta el JavaBytecode usando un JVM personalizada para realizar su an\'alisis.
 
 
 \section{Caso de estudio elegido}
-A continuacion explicaremos el caso de estudio elegido, donde el objetivo del mismo fue comparar 3 tecnicas diferentes (Model Checking(MC), Runtime Analysis(RA) y Testing(TT)), para detectar bugs como Deadlocks, Data Race y Plan Semantics sobre 3 versiones del codigo del NASA Ames K9 Rover.
-Dada la complejidad de crear un experimento como este, result\'o imposible reportar conclusiones validas de manera estatica, por eso solo se concentraron en los resultados de MC, RA y TT. Cabe destacar que la herramienta utilizada para realizar MC fue JPF, y haremos foco en el uso de la misma, aunque el analisis que se realiza en este caso de estudio surge de la comparacion con las otras tecnicas mencionadas.
+A continuaci\'on explicaremos el caso de estudio elegido, donde el objetivo del mismo fue comparar 3 tecnicas diferentes (Model Checking(MC), Runtime Analysis(RA) y Testing(TT)), para detectar bugs como Deadlocks, Data Race y Plan Semantics sobre 3 versiones del codigo del NASA Ames K9 Rover.
+Dada la complejidad de crear un experimento como este, result\'o imposible reportar conclusiones v\'alidas de manera est\'atica, por eso s\'olo se concentraron en los resultados de MC, RA y TT. Cabe destacar que la herramienta utilizada para realizar MC fue JPF, y haremos foco en el uso de la misma, aunque el an\'alisis que se realiza en este caso de estudio surge de la comparaci\'on con las otras t\'ecnicas mencionadas.
 
 \begin{figure}[H]
 \centering
@@ -118,13 +118,13 @@ La figura 2 muestra como se desempe\~naron las diferentes t\'ecnicas en la busqu
 \caption{Errores encontrados a lo largo de las versiones} \label{fig3}
 \end{figure}
 
-En la figura 3 se puede observar el detalle por dia de los bugs encontrados en una linea de tiempo de 48 horas (3 sesiones de 2 dias, cada dia consistiendo de 8 horas). Una primera observacion sobre MC, es que los Spurious Errors (errores introducidos a la hora de dise\~nar la abstracci\'on), decrementan a lo largo de las tres versiones de c\'odigo a verificar. Esto se debe a que los participantes se familiarizan con el c\'odigo y desarrollan mejores abstracciones. Deadlock 3 es simple y fue encontrado rapidamente por los tres metodos. Deadlock 1 es un poco mas complejo pero fue encontrado por MC y RA, aunque TT nunca lo encontr\'o. Deadlock 2 fue el mas complejo y fue encontrado en la ultima version solo por MC. Respecto a los errores de Data Race, el equipo de MC solo intentó encontrar este tipo de errores al final del experimento, por eso solo lo detect\'o en la \'ultima version. Un deadlock restante que ningun equipo encontr\'o, era extremadamente sutil y venia luego de un Data Race. A pesar de esto, se contaba con el error debido a que habia sido encontrado por JPF antes de comenzar el experimento.\\
+En la figura 3 se puede observar el detalle por dia de los bugs encontrados en una linea de tiempo de 48 horas (3 sesiones de 2 dias, cada dia consistiendo de 8 horas). Una primera observaci\'on sobre MC, es que los Spurious Errors (errores introducidos a la hora de dise\~nar la abstracci\'on), decrementan a lo largo de las tres versiones de c\'odigo a verificar. Esto se debe a que los participantes se familiarizan con el c\'odigo y desarrollan mejores abstracciones. Deadlock 3 es simple y fue encontrado r\'apidamente por los tres metodos. Deadlock 1 es un poco mas complejo pero fue encontrado por MC y RA, aunque TT nunca lo encontr\'o. Deadlock 2 fue el mas complejo y fue encontrado en la ultima version solo por MC. Respecto a los errores de Data Race, el equipo de MC solo intent\'o encontrar este tipo de errores al final del experimento, por eso solo lo detect\'o en la \'ultima version. Un deadlock restante que ningun equipo encontr\'o, era extremadamente sutil y venia luego de un Data Race. A pesar de esto, se contaba con el error debido a que habia sido encontrado por JPF antes de comenzar el experimento.\\
 Se midi\'o como los participantes dedicaron su tiempo en el analisis a partir de cinco categorias:\\
-Delays: incluye la espera de hardware y el tiempo en solucionar fallas en la tool, como tambien el tiempo esperando un feedback.\\
-Setup/Preparation: para el caso de MC incluyó el tiempo en crear las abstracciones, escribir las propiedades y test-cases.\\
-Running the Rover: no fue muy relevante para MC pero si lo fue para RA y TT.\\
-Running the tool: TT no utilizó ninguna tool, pero MC y RA estuvieron basadas en tools.\\
-Result Analysis: este es el tiempo destinado a determinar la causa del error. Para el caso de MC, esto significa determinar si el error es Spurious o no.\\
+$Delays$: incluye la espera de hardware y el tiempo en solucionar fallas en la tool, como tambi\'en el tiempo esperando un feedback.\\
+$Setup/Preparation$: para el caso de MC incluy\'o el tiempo en crear las abstracciones, escribir las propiedades y test-cases.\\
+$Running the Rover$: no fue muy relevante para MC pero si lo fue para RA y TT.\\
+$Running the tool$: TT no utiliz\'o ninguna tool, pero MC y RA estuvieron basadas en tools.\\
+$Result Analysis$: este es el tiempo destinado a determinar la causa del error. Para el caso de MC, esto significa determinar si el error es Spurious o no.\\
 Enfoc\'andonos en los resultados obtenidos para model checker, podemos ver que en la primer version de codigo el equipo destino mayor cantidad de tiempo para la categoria Delay y Setup/Preparation alrededor de 700 minutos el mismo tiempo que utilizaron ejecutando la tool.\\
 En las siguientes dos versiones la distribuci\'on del uso del tiempo fue cambiando. En la \'ultima version de c\'odigo el equipo dedico cerca de 1500 minutos exclusivamente a ejecutar la tool (m\'as del doble que en la primer versi\'on)
 Esto da la pauta de que utilizar un Model Checker tal como lo es JPF requiere mas tiempo en crear un entorno ideal pero tiene mejor performance a la hora de encontrar errores.
@@ -132,7 +132,7 @@ Esto da la pauta de que utilizar un Model Checker tal como lo es JPF requiere ma
 
 \section{Comparaci\'on con otras herramientas}
 
-JPF al trabajar con Java Bytecode, no requiere traducir ni armar otros modelos, algo que si se debe hacer en LTSA por ejemplo. En otras herramientas, es comun seleccionar propiedades (ya implementadas) que se quieran analizar, cosa que en JPF no sucede ya que se deben implementar (a no ser que se seleccione alguna que viene por defecto).
+JPF al trabajar con Java Bytecode, no requiere traducir ni armar otros modelos, algo que si se debe hacer en LTSA por ejemplo. En otras herramientas, es com\'un seleccionar propiedades (ya implementadas) que se quieran analizar, cosa que en JPF no sucede ya que se deben implementar (a no ser que se seleccione alguna que viene por defecto).
 Otra diferencia a destacar, es que en LTSA se debe definir el algebra FSP de lo que se quiere modelar, mientras que JPF crea el modelo directamente a partir del codigo Java.
 Cuando se utiliza JPF como model checker, es interesante obtener las trazas que llevan la ejecuci\'on a un estado de deadlock, para ello esta herramienta en caso de encontrar este tipo de trazas las muestra en el reporte de salida. De modo similar a lo que muestra LTSA.
 
