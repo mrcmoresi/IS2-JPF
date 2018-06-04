@@ -99,7 +99,8 @@ A su vez, fue utilizado en un sistema para aviones comerciales (The DEOS Avionic
 Tambi\'en se puede mencionar, el uso de esta herramienta por la empresa japonesa Fujitsu[5] (3ra en ranking de empresas de IT), la cual uso JPF, en modo simb\'olico (SPF), para analizar una cantidad de datos masiva.
 Por \'ultimo, podemos mencionar la existencia de muchos casos de estudios realizados en Google Summer of Code[6], donde un estudiante realiza un proyecto con la ayuda de su mentor, utilizando JPF. Algunos de los proyectos que podemos mencionar son: 
 JPF for android Devices[7] es un proyecto de Google Summer of Code 2016 que pretende incorporar JPF en android, brindando t\'ecnicas de verificaci\'on para encontrar bugs en aplicaciones android.\\
-Symbolic Path Finder (SPF)[8] es una herramienta de ejecuci\'on simb\'olica basada en JPF. Ejecuta el JavaBytecode usando un JVM personalizada para realizar su an\'alisis.
+Otra herramienta desarrollada bajo el mismo evento es Symbolic Path Finder (SPF)[8] es una herramienta de ejecuci\'on simb\'olica basada en JPF. La misma ejecuta el JavaBytecode usando un JVM personalizada para realizar su an\'alisis actualmente se encuentra en desarrollo para agregarle ciertas funcionalidades.\\
+Por \'ultimo nos parece imporante mencionar que dentro del mismo event\'o se desarroll\'o una extensi\'on de JPF muy interesante que es JPF Inspector[9], el cual permite ser agregado a un programa que est\'e usando la m\'aquina virtual de JPF para debugear el programa paso a paso, realizar ejecuciones de un solo paso entre otras funcionalidades que agrega.
 
 
 \section{Caso de estudio elegido}
@@ -120,11 +121,11 @@ La figura 2 muestra como se desempe\~naron las diferentes t\'ecnicas en la busqu
 
 En la figura 3 se puede observar el detalle por dia de los bugs encontrados en una linea de tiempo de 48 horas (3 sesiones de 2 dias, cada dia consistiendo de 8 horas). Una primera observaci\'on sobre MC, es que los Spurious Errors (errores introducidos a la hora de dise\~nar la abstracci\'on), decrementan a lo largo de las tres versiones de c\'odigo a verificar. Esto se debe a que los participantes se familiarizan con el c\'odigo y desarrollan mejores abstracciones. Deadlock 3 es simple y fue encontrado r\'apidamente por los tres metodos. Deadlock 1 es un poco mas complejo pero fue encontrado por MC y RA, aunque TT nunca lo encontr\'o. Deadlock 2 fue el mas complejo y fue encontrado en la ultima version solo por MC. Respecto a los errores de Data Race, el equipo de MC solo intent\'o encontrar este tipo de errores al final del experimento, por eso solo lo detect\'o en la \'ultima version. Un deadlock restante que ningun equipo encontr\'o, era extremadamente sutil y venia luego de un Data Race. A pesar de esto, se contaba con el error debido a que habia sido encontrado por JPF antes de comenzar el experimento.\\
 Se midi\'o como los participantes dedicaron su tiempo en el analisis a partir de cinco categorias:\\
-$Delays$: incluye la espera de hardware y el tiempo en solucionar fallas en la tool, como tambi\'en el tiempo esperando un feedback.\\
-$Setup/Preparation$: para el caso de MC incluy\'o el tiempo en crear las abstracciones, escribir las propiedades y test-cases.\\
-$Running the Rover$: no fue muy relevante para MC pero si lo fue para RA y TT.\\
-$Running the tool$: TT no utiliz\'o ninguna tool, pero MC y RA estuvieron basadas en tools.\\
-$Result Analysis$: este es el tiempo destinado a determinar la causa del error. Para el caso de MC, esto significa determinar si el error es Spurious o no.\\
+\textbf{Delays}: incluye la espera de hardware y el tiempo en solucionar fallas en la tool, como tambi\'en el tiempo esperando un feedback.\\
+\textbf{Setup/Preparation}: para el caso de MC incluy\'o el tiempo en crear las abstracciones, escribir las propiedades y test-cases.\\
+\textbf{Running the Rover}: no fue muy relevante para MC pero si lo fue para RA y TT.\\
+\textbf{Running the tool}: TT no utiliz\'o ninguna tool, pero MC y RA estuvieron basadas en tools.\\
+\textbf{Result Analysis}: este es el tiempo destinado a determinar la causa del error. Para el caso de MC, esto significa determinar si el error es Spurious o no.\\
 Enfoc\'andonos en los resultados obtenidos para model checker, podemos ver que en la primer version de codigo el equipo destino mayor cantidad de tiempo para la categoria Delay y Setup/Preparation alrededor de 700 minutos el mismo tiempo que utilizaron ejecutando la tool.\\
 En las siguientes dos versiones la distribuci\'on del uso del tiempo fue cambiando. En la \'ultima version de c\'odigo el equipo dedico cerca de 1500 minutos exclusivamente a ejecutar la tool (m\'as del doble que en la primer versi\'on)
 Esto da la pauta de que utilizar un Model Checker tal como lo es JPF requiere mas tiempo en crear un entorno ideal pero tiene mejor performance a la hora de encontrar errores.
@@ -178,6 +179,9 @@ Java PathFinder for Android Devices - \url{https://bitbucket.org/matsurago/jpf-m
 
 \bibitem{ref_url1}
 Symbolic Path Finder (SPF) - \url{https://github.com/R1kM/Pathfinder}
+
+\bibitem{ref_url1}
+JPF Inspector - \url{https://github.com/d3sformal/jpf-inspector}
 
 \end{thebibliography}
 \end{document}
