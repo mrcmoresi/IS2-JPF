@@ -21,23 +21,25 @@
 %
 %\titlerunning{Abbreviated paper title}
 % If the paper title is too long for the running head, you can set
-% an abbreviated paper title here
+% an abbreviated paper title here%
+
+\author{Farias Juan\inst{1}\and
+Kokic Emiliano\inst{1} \and
+Moresi Marco\inst{1}}
 %
-\author{Farias Juan Ignacio\and
-Kokic Emiliano\and
-Moresi Marco}
-%
-\authorrunning{Farias Juan - Kokic Emiliano - Moresi Marco}
+\authorrunning{Farias Juan, Kokic Emiliano, Moresi Marco}
 % First names are abbreviated in the running head.
 % If there are more than two authors, 'et al.' is used.
 %
-\institute{Facultad de Matem\'atica, Astronom\'ia, F\'isica y Computaci\'on, C\'ordoba, Argentina}
+\institute{Facultad de Matem\'atica, Astronom\'ia, F\'isica y Computaci\'on, C\'ordoba, Argentina
+\email{\{frsjuanignacio, emikokic, mrc.moresi\}@gmail.com}}
 %
+
 \maketitle              % typeset the header of the contribution
 %
 \begin{abstract}
-Esta investigaci\'on se centr\'o en el funcionamiento de la herramienta Java Path Finder, la cual permite verificar programas escritos en Java. Se investig\'o sobre distintos aspectos t\'ecnicos de la misma como as\'i tambi\'en aspectos de usabilidad e interacción con el usuario.
-Dado lo vers\'atil de la herramienta, decidimos acotar la investigaci\'on s\'olo al uso de JPF como model checker de programas concurrentes. Esta investigaci\'on aporta un an\'alisis para aquellos nuevos usuarios de esta herramienta desarrollada por la NASA y hoy de c\'odigo abierto.
+Esta investigaci\'on se centr\'o en el funcionamiento de la herramienta Java Path Finder, la cual permite verificar programas escritos en Java. Se investig\'o sobre distintos aspectos t\'ecnicos de la misma como as\'i tambi\'en aspectos de usabilidad e interacci\'on con el usuario.
+Dado lo vers\'atil de la herramienta, decidimos acotar la investigaci\'on s\'olo al uso de JPF como model checker de programas concurrentes. Esta investigaci\'on aporta un an\'alisis para aquellos nuevos usuarios de esta herramienta originalmente desarrollada por la NASA y actualmente de c\'odigo abierto.
 
 
 \keywords{JPF \and Model Checker \and Java.}
@@ -47,7 +49,7 @@ Dado lo vers\'atil de la herramienta, decidimos acotar la investigaci\'on s\'olo
 %
 \section{Contexto de creaci\'on de la herramienta}
 
-Java Path Finder, tambi\'en como conocido como JPF,  se comenz\'o a desarrollar en el año  1999 como un traductor de Java a Promela (usando Spin como model checker). Para el año 2000, se convirti\'o en una herramienta de model checker por si sola, dejando de lado la utilizaci\'on de Spin. Las primeras etapas fueron desarrolladas por el grupo Robust Software Engineering en la NASA Ames Research Center, junto con el apoyo de organizaciones tales como RIACS (The Research Institute for Advanced Computer Science).
+Java Path Finder, tambi\'en como conocido como JPF,  se comenz\'o a desarrollar en el a\~no  1999 como un traductor de Java a Promela (usando Spin como model checker). Para el año 2000, se convirti\'o en una herramienta de model checker por si sola, dejando de lado la utilizaci\'on de Spin. Las primeras etapas fueron desarrolladas por el grupo Robust Software Engineering en la NASA Ames Research Center, junto con el apoyo de organizaciones tales como RIACS (The Research Institute for Advanced Computer Science).
 En el a\~no 2005 se convirti\'o en una herramienta de c\'odigo abierto. Actualmente, se encuentra disponible de manera gratuita y en desarrollo continuo gracias al apoyo de m\'as de 20 universidades de todo el mundo.
 
 \begin{figure}
@@ -61,7 +63,7 @@ En el a\~no 2005 se convirti\'o en una herramienta de c\'odigo abierto. Actualme
 
 El objetivo de JPF depende como se configure la herramienta, el n\'ucleo principal de JPF es una Java Virtual Machine que ejecuta c\'odigo compilado de Java (Java Bytecode). Es utilizado para detectar defectos, para lo cual, JPF toma como entrada el programa a verificar y la configuraci\'on que se desea verificar (archivo .jpf). JPF devolver\'a un reporte describiendo si las propiedades de la configuraci\'on se mantienen y/o que artefactos de verificaci\'on han sido creados por JPF para su posterior an\'alisis. 
 Un conjunto de instrucciones por defecto hace uso de una caracteristica importante de JPF: execution choices. JPF puede identificar puntos en el programa donde la ejecuci\'on puede proceder de diferentes maneras, luego explora sistem\'aticamente cada uno de estos puntos, es decir, JPF ejecuta todos los paths. En cuanto al numero de paths, puede crecer exponencialmente (esto es llamado como state explosion problem). Para lidiar con esto, JPF emplea una linea de defensa llamada state matching: cada vez que JPF alcanza un choice point, checkea si ya ha visto un estado similar en el programa y en tal caso, abandona ese path, realiza un backtrack a un choice point previo que tenga choices no exploradas y procede desde alli. 
-En caso de ejecutar sin una configuraci\'on propia, por defecto JPF verificar\'a el programa en b\'usqueda de deadlocks y excepciones no controladas (unhandled exceptions). Estas son llamadas propiedades non-funcional. Pero como se mencion\'o previamente, el usuario puede definir propiedades espec\'ificas, que en su mayoria, se realizan con los llamados listeners (peque\~nos ‘plugins’ que permiten monitorear con mas detalle todas las acciones que va tomando JPF). Todo explica porque JPF es llamado "a debugger toolbox on steroids", primero autom\'aticamente ejecuta el programa de entrada en todas sus formas posibles para detectar defectos y cuando los encuentra muestra una explicaci\'on de que lo caus\'o.
+En caso de ejecutar sin una configuraci\'on propia, por defecto JPF verificar\'a el programa en b\'usqueda de deadlocks y excepciones no controladas (unhandled exceptions). Estas son llamadas propiedades non-funcional. Pero como se mencion\'o previamente, el usuario puede definir propiedades espec\'ificas, que en su mayoria, se realizan con los llamados listeners (peque\~nos ‘plugins’ que permiten monitorear con mas detalle todas las acciones que va tomando JPF). Todo explica porque JPF es llamado "a debugger toolbox on steroids", primero autom\'aticamente ejecuta el programa de entrada en todas sus formas posibles para detectar defectos y cuando los encuentra muestra una explicaci\'on de que lo caus\'o. Y luego puede ser extendido en base a la necesidad del usuario.
 
 
 \section{Descripci\'on de la herramienta del lado del usuario}
@@ -99,8 +101,8 @@ A su vez, fue utilizado en un sistema para aviones comerciales (The DEOS Avionic
 Tambi\'en se puede mencionar, el uso de esta herramienta por la empresa japonesa Fujitsu[5], la cual el 12 de enero de 2012, anunci\'o el desarrollo de una nueva tecnologia para probar exhaustivamente los programas de Java, basada en JPF simb\'olico.
 Por \'ultimo, podemos mencionar algunos casos de estudios realizados en Google Summer of Code[6] y JPF Workshop 2017, donde un estudiante realiza un proyecto con la ayuda de su mentor, utilizando JPF. Algunos de los proyectos que podemos mencionar son: 
 JPF for android Devices[7] es un proyecto de Google Summer of Code 2016 que pretende incorporar JPF en android, brindando t\'ecnicas de verificaci\'on para encontrar bugs en aplicaciones android.\\
-Scalable Parallel Model Checking via Monte-Carlo Tree Search[8], es un trabajo en el cual se present\'o MCTS, una estrategia basada en b\'usqueda paralela para Model Checking utilizando JPF.
-Using JPF to efficiently compute workload in Multi-Agent Systems[9], un proyecto enfocado en la creaci\'on de un modelo SATS(Small Aircraft Transportation System), sobre el cual se utiliza JPF para computar el workload y verificar las propiedades del sistema.
+Scalable Parallel Model Checking via Monte-Carlo Tree Search[8], es un trabajo en el cual se present\'o MCTS, una estrategia basada en b\'usqueda paralela para Model Checking utilizando JPF.\\
+Using JPF to efficiently compute workload in Multi-Agent Systems[9], un proyecto enfocado en la creaci\'on de un modelo SATS(Small Aircraft Transportation System), sobre el cual se utiliza JPF para computar el workload y verificar las propiedades del sistema.\\
 
 \section{Caso de estudio elegido}
 A continuaci\'on explicaremos el caso de estudio elegido, donde el objetivo del mismo fue comparar 3 tecnicas diferentes (Model Checking(MC), Runtime Analysis(RA) y Testing(TT)), para detectar bugs como Deadlocks, Data Race y Plan Semantics sobre 3 versiones del codigo del NASA Ames K9 Rover[3].
@@ -108,25 +110,25 @@ Dada la complejidad de crear un experimento como este, result\'o imposible repor
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.5]{fig2.png}
+\includegraphics[scale=0.33]{fig2.png}
 \caption{Desempe\~no de las diferentes t\'ecnicas} \label{fig2}
 \end{figure}
-La figura 2 muestra como se desempe\~naron las diferentes t\'ecnicas en la busqueda de los diez errores. Las t\'ecnicas m\'as avanzadas como MC y RA resultaron ser m\'as eficientes en los errores relacionados a la concurrencia. El hecho de que TT haya sido peor que MC en todas las categorias fue un detalle un tanto inesperado.\\
+La figura 2 muestra como se desempe\~naron las diferentes t\'ecnicas en la busqueda de los diez errores (4 deadlocks, 1 data race, 5 plan-related). Las t\'ecnicas m\'as avanzadas como MC y RA resultaron ser m\'as eficientes en los errores relacionados a la concurrencia. El hecho de que TT haya sido peor que MC en todas las categorias fue un detalle un tanto inesperado.\\
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{fig3.png}
+\includegraphics[scale=0.5]{fig3.png}
 \caption{Errores encontrados a lo largo de las versiones} \label{fig3}
 \end{figure}
 
-En la figura 3 se puede observar el detalle por dia de los bugs encontrados en una linea de tiempo de 48 horas (3 sesiones de 2 dias, cada dia consistiendo de 8 horas). Una primera observaci\'on sobre MC, es que los Spurious Errors (errores introducidos a la hora de dise\~nar la abstracci\'on), decrementan a lo largo de las tres versiones de c\'odigo a verificar. Esto se debe a que los participantes se familiarizan con el c\'odigo y desarrollan mejores abstracciones. Deadlock 3 es simple y fue encontrado r\'apidamente por los tres metodos. Deadlock 1 es un poco mas complejo pero fue encontrado por MC y RA, aunque TT nunca lo encontr\'o. Deadlock 2 fue el mas complejo y fue encontrado en la ultima version solo por MC. Respecto a los errores de Data Race, el equipo de MC solo intent\'o encontrar este tipo de errores al final del experimento, por eso solo lo detect\'o en la \'ultima version. Un deadlock restante que ningun equipo encontr\'o, era extremadamente sutil y venia luego de un Data Race. A pesar de esto, se contaba con el error debido a que habia sido encontrado por JPF antes de comenzar el experimento.\\
+En la figura 3 se puede observar el detalle por dia de los bugs encontrados en una linea de tiempo de 48 horas (3 sesiones de 2 dias, cada dia consistiendo de 8 horas).\\ Una primera observaci\'on sobre MC, es que los Spurious Errors (errores introducidos a la hora de dise\~nar la abstracci\'on), decrementan a lo largo de las tres versiones de c\'odigo a verificar. Esto se debe a que los participantes se familiarizan con el c\'odigo y desarrollan mejores abstracciones. Deadlock 3 es simple y fue encontrado r\'apidamente por los tres metodos. Deadlock 1 es un poco mas complejo pero fue encontrado por MC y RA, aunque TT nunca lo encontr\'o. Deadlock 2 fue el mas complejo y fue encontrado en la ultima version solo por MC. Respecto a los errores de Data Race, el equipo de MC solo intent\'o encontrar este tipo de errores al final del experimento, por eso solo lo detect\'o en la \'ultima version. Un deadlock restante que ningun equipo encontr\'o, era extremadamente sutil y venia luego de un Data Race. A pesar de esto, se contaba con el error debido a que habia sido encontrado por JPF antes de comenzar el experimento.\\
 Se midi\'o como los participantes dedicaron su tiempo en el analisis a partir de cinco categorias:\\
 \textbf{Delays}: incluye la espera de hardware y el tiempo en solucionar fallas en la tool, como tambi\'en el tiempo esperando un feedback.\\
 \textbf{Setup/Preparation}: para el caso de MC incluy\'o el tiempo en crear las abstracciones, escribir las propiedades y test-cases.\\
 \textbf{Running the Rover}: no fue muy relevante para MC pero si lo fue para RA y TT.\\
 \textbf{Running the tool}: TT no utiliz\'o ninguna tool, pero MC y RA estuvieron basadas en tools.\\
 \textbf{Result Analysis}: este es el tiempo destinado a determinar la causa del error. Para el caso de MC, esto significa determinar si el error es Spurious o no.\\
-Enfoc\'andonos en los resultados obtenidos para model checker, podemos ver que en la primer version de codigo el equipo destino mayor cantidad de tiempo para la categoria Delay y Setup/Preparation alrededor de 700 minutos el mismo tiempo que utilizaron ejecutando la tool.\\
-En las siguientes dos versiones la distribuci\'on del uso del tiempo fue cambiando. En la \'ultima version de c\'odigo el equipo dedico cerca de 1500 minutos exclusivamente a ejecutar la tool (m\'as del doble que en la primer versi\'on)
+Enfoc\'andonos en los resultados obtenidos para model checker,  en la primer version de codigo el equipo destino mayor cantidad de tiempo para la categoria Delay y Setup/Preparation alrededor de 700 minutos el mismo tiempo que utilizaron ejecutando la tool.\\
+En las siguientes dos versiones la distribuci\'on del uso del tiempo fue cambiando. En la \'ultima version de c\'odigo el equipo dedic\'o cerca de 1500 minutos exclusivamente a ejecutar la tool (m\'as del doble que en la primer versi\'on)
 Esto da la pauta de que utilizar un Model Checker tal como lo es JPF requiere mas tiempo en crear un entorno ideal pero tiene mejor performance a la hora de encontrar errores.
 
 
@@ -139,8 +141,8 @@ Cuando se utiliza JPF como model checker, es interesante obtener las trazas que 
 
 \section{Conclusiones particulares}
 
-JPF fue desarrollada con el objetivo de que sea una herramienta dinamica y con la posibilidad de extenderla y/o adecuarla seg\'un el analisis o estudio que se quiera realizar. La gran desventaja que tiene es que requiere grandes esfuerzos de configuraci\'on, ya que se se deben setear propiedades, las cuales en muchos casos son dificiles de entender e implementar y al momento de especificar software critico lo es m\'as a\'un, aunque en este caso, JPF es la solucion ideal (No es casualidad que sea utilizado por la NASA). Pero todo esto genera que muchos usuarios no lo vean factible al uso de JPF.
-No trabaja independientemente, ya que necesita de una terminal o IDEs, configuraciones y modulos especificos para poder ejecutarlo y reportar resultados. Su instalaci\'on no es muy complicada, pero si puede serlo si no se cuenta de antemano con las herramientas que necesita JPF para poder ejecutarse. Al no contar con interfaz gr\'afica propia, se torna mas dificil su uso, aunque lo positivo es que existen plugins que lo hacen menos tedioso.\\
+JPF fue desarrollada con el objetivo de que sea una herramienta din\'amica y con la posibilidad de extenderla y/o adecuarla seg\'un el an\'alisis o estudio que se quiera realizar. La gran desventaja que tiene es que requiere grandes esfuerzos de configuraci\'on, ya que se se deben setear propiedades, las cuales en muchos casos son dif\'iciles de entender e implementar y al momento de especificar software critico lo es m\'as a\'un, aunque en este caso, JPF es la soluci\'on ideal (No es casualidad que sea utilizado por la NASA). Pero todo esto genera que muchos usuarios no lo vean factible al uso de JPF.
+No trabaja independientemente, ya que necesita de una terminal o IDEs, configuraciones y m\'odulos especificos para poder ejecutarlo y reportar resultados. Su instalaci\'on no es muy complicada, pero si puede serlo si no se cuenta de antemano con las herramientas que necesita JPF para poder ejecutarse. Al no contar con interfaz gr\'afica propia, se torna mas dif\'icil su uso, aunque lo positivo es que existen plugins que lo hacen menos complejo para usuarios que reci\'en comienzan a utilizar la terminal.\\
 El constante desarrollo y creaci\'on de extensiones que se realiza en los principales eventos relacionados a la herramienta (Google Summer of Code[7] y Java PathFinder Workshop[8]) permiten que la herramienta est\'e vigente todo el tiempo, amoldandos\'e a las necesidades de los usuarios.\\
 Como conclusi\'on, m\'as all\'a de la complejidad de JPF en su todo, es una herramienta muy completa, que puede solucionar problemas sobre diversos campos de ejecuci\'on, de manera efectiva, seg\'un sus configuraciones y optimizaciones. Adem\'as, al ser una herramienta que trabaja puramente con java, lo hace mas \'util y popular a\'in.
 
@@ -154,6 +156,7 @@ Como conclusi\'on, m\'as all\'a de la complejidad de JPF en su todo, es una herr
 % \bibliographystyle{splncs04}
 % \bibliography{mybibliography}
 %
+
 \begin{thebibliography}{8}
 \bibitem{ref_url1}
 Documentacion anterior \url{https://babelfish.arc.nasa.gov/}
