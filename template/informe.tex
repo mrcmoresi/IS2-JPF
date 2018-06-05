@@ -96,12 +96,11 @@ JPF tiene manejo expl\'icito de estados, lo realiza creando instancias de la cla
 Los primeros usos que se le dio a esta herramienta fueron para proyectos de la NASA, dado que era privativo el software, entre ellos se destacan proyectos como la verificaci\'on del software del NASA Ames K9 Rover [3] que es una plataforma para veh\'iculos aut\'onomos para reconocimiento de suelo de planetas tales como Marte.
 Otro uso significativo, por parte de la NASA, fue usarlo para traducir gr\'aficos de estados UML, permitiendo as\'i una relaci\'on uno a uno con el modelo en UML y c\'odigo escrito en Java, que es m\'as f\'acil de leer [4].\\
 A su vez, fue utilizado en un sistema para aviones comerciales (The DEOS Avionics Operating System), implementado en C++. Este sistema fue llevado a la NASA para su verificaci\'on, siendo necesarias, adem\'as de la traducci\'on a Java, t\'ecnicas de reducci\'on de estados como $POR$, ya que de otra manera el error no era encontrado.\\
-Tambi\'en se puede mencionar, el uso de esta herramienta por la empresa japonesa Fujitsu[5] (3ra en ranking de empresas de IT), la cual uso JPF, en modo simb\'olico (SPF), para analizar una cantidad de datos masiva.
-Por \'ultimo, podemos mencionar la existencia de muchos casos de estudios realizados en Google Summer of Code[6], donde un estudiante realiza un proyecto con la ayuda de su mentor, utilizando JPF. Algunos de los proyectos que podemos mencionar son: 
+Tambi\'en se puede mencionar, el uso de esta herramienta por la empresa japonesa Fujitsu[5], la cual el 12 de enero de 2012, anunci\'o el desarrollo de una nueva tecnologia para probar exhaustivamente los programas de Java, basada en JPF simb\'olico.
+Por \'ultimo, podemos mencionar algunos casos de estudios realizados en Google Summer of Code[6] y JPF Workshop 2017, donde un estudiante realiza un proyecto con la ayuda de su mentor, utilizando JPF. Algunos de los proyectos que podemos mencionar son: 
 JPF for android Devices[7] es un proyecto de Google Summer of Code 2016 que pretende incorporar JPF en android, brindando t\'ecnicas de verificaci\'on para encontrar bugs en aplicaciones android.\\
-Otra herramienta desarrollada bajo el mismo evento es Symbolic Path Finder (SPF)[8] es una herramienta de ejecuci\'on simb\'olica basada en JPF. La misma ejecuta el JavaBytecode usando un JVM personalizada para realizar su an\'alisis actualmente se encuentra en desarrollo para agregarle ciertas funcionalidades.\\
-Por \'ultimo nos parece imporante mencionar que dentro del mismo event\'o se desarroll\'o una extensi\'on de JPF muy interesante que es JPF Inspector[9], el cual permite ser agregado a un programa que est\'e usando la m\'aquina virtual de JPF para debugear el programa paso a paso, realizar ejecuciones de un solo paso entre otras funcionalidades que agrega.
-
+Scalable Parallel Model Checking via Monte-Carlo Tree Search[8], es un trabajo en el cual se present\'o MCTS, una estrategia basada en b\'usqueda paralela para Model Checking utilizando JPF.
+Using JPF to efficiently compute workload in Multi-Agent Systems[9], un proyecto enfocado en la creaci\'on de un modelo SATS(Small Aircraft Transportation System), sobre el cual se utiliza JPF para computar el workload y verificar las propiedades del sistema.
 
 \section{Caso de estudio elegido}
 A continuaci\'on explicaremos el caso de estudio elegido, donde el objetivo del mismo fue comparar 3 tecnicas diferentes (Model Checking(MC), Runtime Analysis(RA) y Testing(TT)), para detectar bugs como Deadlocks, Data Race y Plan Semantics sobre 3 versiones del codigo del NASA Ames K9 Rover[3].
@@ -169,7 +168,7 @@ Experimental Evaluation of Verification and Validation Tools on Martian Rover So
 Trust Your Model - Verifying Aerospace System Models with Java™ Pathfinder.
 
 \bibitem{ref_url1}
-Fujitsu - \url{http://www.fujitsu.com/global/}
+Fujitsu - \url{http://www.fujitsu.com/global/about/resources/news/press-releases/2010/0112-02.html}
 
 \bibitem{ref_url1}
 Google Summer of Code - \url{https://summerofcode.withgoogle.com/?csw=1}
@@ -178,10 +177,11 @@ Google Summer of Code - \url{https://summerofcode.withgoogle.com/?csw=1}
 Java PathFinder for Android Devices - \url{https://bitbucket.org/matsurago/jpf-mobile-devices/wiki/Home}
 
 \bibitem{ref_url1}
-Symbolic Path Finder (SPF) - \url{https://github.com/R1kM/Pathfinder}
+Scalable Parallel Model Checking via Monte-Carlo Tree Search - \url{http://delivery.acm.org/10.1145/3150000/3149495/p40b-milewicz.pdf?ip=200.16.16.13&id=3149495&acc=ACTIVE%20SERVICE&key=5829699E51A5AC7F%2E738D445025FD5D2D%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35&__acm__=1528225152_72c8503971218cd7f13a17e0c677ee92}
 
 \bibitem{ref_url1}
-JPF Inspector - \url{https://github.com/d3sformal/jpf-inspector}
+Using JPF to efficiently compute workload in Multi-Agent SystemsJava PathFinder for Android Devices - \url{https://docs.google.com/document/d/1wQTfQw_cUeSyjDpQsuO3OrIrQOK7xdvEt_SRaMdDCV4/edit}
+
 
 \end{thebibliography}
 \end{document}
