@@ -86,7 +86,7 @@ La encargada de generar los estados es la VM, mediante la ejecuci\'on de instruc
 
 Search Component es el responsable de elegir el siguiente estado que se ejecutar\'a, la ejecuci\'on puede ser parametrizada: $forward$, genera el siguiente estado y reporta si el mismo tiene sucesor (en caso de tener sucesor, guardar\'a el estado en una pila backtrack), $backtrack$, restaura el \'ultimo estado en la pila backtrack, $restoreState$ restaura un estado arbitrario (no necesariamente de la pila backtrack).
 
-M\'as a\'un puede ser configurado para usar diferentes estrategias de b\'usqueda tales como DFS, cola de prioridades, entre otros.
+M\'as a\'un puede ser configurado para usar diferentes estrategias de b\'usqueda tales como DFS, cola de prioridades, heur\'isticas de b\'usqueda,  entre otras.
 El n\'umero de las diferentes combinaciones de scheduling crece exponencialmente a medida que crecen los programas. Para atacar esta dificultad JPF implementa $Partial Order Reduction (POR)$, esta t\'ecnica consta de agrupar todas las instrucciones en un thread que no tienen efecto en otros threads, de modo que sea una sola transici\'on en el sistema de estados. Esta t\'ecnica suele reducir el espacio de estados en un 70\%.
 Si $POR$ est\'a habilitado, la máquina virtual ejecutar\'a todo el thread en caso de recibir un request forward hasta que ocurra alguna de las siguientes posibilidades: la siguiente instrucci\'on es relevante para el scheduling o bien la siguiente instrucci\'on contiene un resultado no determin\'istico.
 
@@ -129,6 +129,7 @@ Se midi\'o como los participantes dedicaron su tiempo en el analisis a partir de
 \textbf{Result Analysis}: este es el tiempo destinado a determinar la causa del error. Para el caso de MC, esto significa determinar si el error es Spurious o no.\\
 Enfoc\'andonos en los resultados obtenidos para model checker,  en la primer version de codigo el equipo destino mayor cantidad de tiempo para la categoria Delay y Setup/Preparation alrededor de 700 minutos el mismo tiempo que utilizaron ejecutando la tool.\\
 En las siguientes dos versiones la distribuci\'on del uso del tiempo fue cambiando. En la \'ultima version de c\'odigo el equipo dedic\'o cerca de 1500 minutos exclusivamente a ejecutar la tool (m\'as del doble que en la primer versi\'on)
+Durante la ejecuci\'on del JPF la mayor parte del tiempo fue invertido en probar diferentes estrategias de b\'usqueda para alcanzar las diferentes partes del espacio de estados. Eso se bas\'o en probar diferentes configuraciones de par\'ametros para el uso de heur\'isticas de b\'usquedas que provee la herramienta.\\
 Esto da la pauta de que utilizar un Model Checker tal como lo es JPF requiere mas tiempo en crear un entorno ideal pero tiene mejor performance a la hora de encontrar errores.
 
 
