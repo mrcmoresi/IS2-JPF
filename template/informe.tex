@@ -61,7 +61,7 @@ En el a\~no 2005 se convirti\'o en una herramienta de c\'odigo abierto. Actualme
 
 
 
-El objetivo de JPF depende como se configure la herramienta, el n\'ucleo principal de JPF es una Java Virtual Machine que ejecuta c\'odigo compilado de Java (Java Bytecode). Es utilizado para detectar defectos, para lo cual, JPF toma como entrada el programa a verificar y la configuraci\'on que se desea verificar (archivo .jpf). JPF devolver\'a un reporte describiendo si las propiedades de la configuraci\'on se mantienen y/o que artefactos de verificaci\'on han sido creados por JPF para su posterior an\'alisis. 
+El objetivo de JPF depende como se configure la herramienta, el n\'ucleo principal de JPF es una Java Virtual Machine que ejecuta c\'odigo compilado de Java (Java Bytecode). Es utilizado para detectar defectos, para lo cual, JPF toma como entrada el programa a verificar y la configuraci\'on que se desea verificar (archivo .jpf). JPF devolver\'a un reporte describiendo si las propiedades de la configuraci\'on se mantienen y/o que artefactos de verificaci\'on han sido creados por JPF para su posterior an\'alisis (ver Figura 1). 
 Un conjunto de instrucciones por defecto hace uso de una caracteristica importante de JPF: execution choices. JPF puede identificar puntos en el programa donde la ejecuci\'on puede proceder de diferentes maneras, luego explora sistem\'aticamente cada uno de estos puntos, es decir, JPF ejecuta todos los paths. En cuanto al numero de paths, puede crecer exponencialmente (esto es llamado como state explosion problem). Para lidiar con esto, JPF emplea una linea de defensa llamada state matching: cada vez que JPF alcanza un choice point, checkea si ya ha visto un estado similar en el programa y en tal caso, abandona ese path, realiza un backtrack a un choice point previo que tenga choices no exploradas y procede desde alli. 
 En caso de ejecutar sin una configuraci\'on propia, por defecto JPF verificar\'a el programa en b\'usqueda de deadlocks y excepciones no controladas (unhandled exceptions). Estas son llamadas propiedades non-funcional. Pero como se mencion\'o previamente, el usuario puede definir propiedades espec\'ificas, que en su mayoria, se realizan con los llamados listeners (peque\~nos ‘plugins’ que permiten monitorear con mas detalle todas las acciones que va tomando JPF). Todo explica porque JPF es llamado "a debugger toolbox on steroids", primero autom\'aticamente ejecuta el programa de entrada en todas sus formas posibles para detectar defectos y cuando los encuentra muestra una explicaci\'on de que lo caus\'o. Y luego puede ser extendido en base a la necesidad del usuario.
 
@@ -84,10 +84,10 @@ La encargada de generar los estados es la VM, mediante la ejecuci\'on de instruc
 \item Restaurados.
 \end{itemize}
 
-Search Component es el responsable de elegir el siguiente estado que se ejecutar\'a, la ejecuci\'on puede ser parametrizada: $forward$, genera el siguiente estado y reporta si el mismo tiene sucesor (en caso de tener sucesor, guardar\'a el estado en una pila backtrack), $backtrack$, restaura el \'ultimo estado en la pila backtrack, $restoreState$ restaura un estado arbitrario (no necesariamente de la pila backtrack).
+Search Component[10] es el responsable de elegir el siguiente estado que se ejecutar\'a, la ejecuci\'on puede ser parametrizada: $forward$, genera el siguiente estado y reporta si el mismo tiene sucesor (en caso de tener sucesor, guardar\'a el estado en una pila backtrack), $backtrack$, restaura el \'ultimo estado en la pila backtrack, $restoreState$ restaura un estado arbitrario (no necesariamente de la pila backtrack).
 
-M\'as a\'un puede ser configurado para usar diferentes estrategias de b\'usqueda tales como DFS, cola de prioridades, heur\'isticas de b\'usqueda,  entre otras.
-El n\'umero de las diferentes combinaciones de scheduling crece exponencialmente a medida que crecen los programas. Para atacar esta dificultad JPF implementa $Partial Order Reduction (POR)$, esta t\'ecnica consta de agrupar todas las instrucciones en un thread que no tienen efecto en otros threads, de modo que sea una sola transici\'on en el sistema de estados. Esta t\'ecnica suele reducir el espacio de estados en un 70\%.
+M\'as a\'un puede ser configurado para usar diferentes estrategias de b\'usqueda tales como DFS[11], cola de prioridades, heur\'isticas de b\'usqueda,  entre otras.
+El n\'umero de las diferentes combinaciones de scheduling crece exponencialmente a medida que crecen los programas. Para atacar esta dificultad JPF implementa $Partial Order Reduction (POR)$[12], esta t\'ecnica consta de agrupar todas las instrucciones en un thread que no tienen efecto en otros threads, de modo que sea una sola transici\'on en el sistema de estados. Esta t\'ecnica suele reducir el espacio de estados en un 70\%.
 Si $POR$ est\'a habilitado, la máquina virtual ejecutar\'a todo el thread en caso de recibir un request forward hasta que ocurra alguna de las siguientes posibilidades: la siguiente instrucci\'on es relevante para el scheduling o bien la siguiente instrucci\'on contiene un resultado no determin\'istico.
 
 JPF tiene manejo expl\'icito de estados, lo realiza creando instancias de la clase SystemState para encapsular informaci\'on relevante para la ejecuci\'on: tales como estado del thread, pila, cola, valores de las variables locales, entre otra informaci\'on.
@@ -162,30 +162,39 @@ Como conclusi\'on, m\'as all\'a de la complejidad de JPF en su todo, es una herr
 \bibitem{ref_url1}
 Entrada Wikipedia Promela \url{https://en.wikipedia.org/wiki/Promela} \'Ultimo acceso 22 de Junio 2018
 
-\bibitem{ref_url1}
+\bibitem{ref_url2}
 P\'agina oficial Spin \url{http://spinroot.com/spin/whatispin.html} \'Ultimo acceso 22 de Junio 2018
 
-\bibitem{ref_url1}
+\bibitem{ref_url3}
 Brat, G., Drusinsky, D., Giannakopoulou, D. et al. Formal Methods in System Design (2004) 25: 167. https://doi.org/10.1023/B:FORM.0000040027.28662.a4
 
-\bibitem{ref_url1}
+\bibitem{ref_url4}
 P. C. Mehlitz, "Trust Your Model - Verifying Aerospace System Models with Java Pathfinder," 2008 IEEE Aerospace Conference, Big Sky, MT, 2008, pp. 1-11.
 doi: 10.1109/AERO.2008.4526573
 
-\bibitem{ref_url1}
+\bibitem{ref_url5}
 Fujitsu - \url{http://www.fujitsu.com/global/about/resources/news/press-releases/2010/0112-02.html} \'Ultimo acceso 22 de Junio 2018
 
-\bibitem{ref_url1}
+\bibitem{ref_url6}
 Google Summer of Code - \url{https://summerofcode.withgoogle.com/?csw=1} \'Ultimo acceso 22 de Junio 2018
 
-\bibitem{ref_url1}
+\bibitem{ref_url7}
 Java PathFinder for Android Devices - \url{https://bitbucket.org/matsurago/jpf-mobile-devices/wiki/Home} \'Ultimo acceso 22 de Junio 2018
 
-\bibitem{ref_url1}
+\bibitem{ref_url8}
 M. Milewicz, Reed and Poulding, Simon. (2018). Scalable Parallel Model Checking via Monte-Carlo Tree Search. ACM SIGSOFT Software Engineering Notes. 42. 1-5. 10.1145/3149485.3149495. 
 
-\bibitem{ref_url1}
+\bibitem{ref_url9}
 Using JPF to efficiently compute workload in Multi-Agent SystemsJava PathFinder for Android Devices - \url{https://drive.google.com/drive/folders/0BwrgAhm5slznTFlpNUhJRjRXZ1k} \'Ultimo acceso 22 de Junio 2018
+
+\bibitem{ref_url10}
+Search Component \url{https://github.com/javapathfinder/jpf-core/wiki/Search-Strategies} \'Ultimo acceso 22 de Junio 2018
+
+\bibitem{ref_url11}
+Entrada Wikipedia B\'usqueda en profundidad \url{https://en.wikipedia.org/wiki/Depth-first\_search} \'Ultimo acceso 22 de Junio 2018
+
+\bibitem{ref_url12}
+Entrada Wikipedia Partial Order Reduction \url{http://en.wikipedia.org/wiki/Partial\_order\_reduction} \'Ultimo acceso 22 de Junio 2018
 
 \end{thebibliography}
 \end{document}
