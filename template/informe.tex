@@ -57,24 +57,13 @@ En el a\~no 2005 se convirti\'o en una herramienta de c\'odigo abierto. Actualme
 \caption{The Core : a VM that supports Model Checking} \label{fig1}
 \end{figure}
 
-\section{Objetivo de la herramienta}
-
-
+\section{Objetivos y Aspectos t\'ecnicos de la herramienta}
 
 El objetivo de JPF depende como se configure la herramienta, el n\'ucleo principal de JPF es una Java Virtual Machine que ejecuta c\'odigo compilado de Java (Java Bytecode)(ver Figura 1). Es utilizado para detectar defectos, para lo cual, JPF toma como entrada el programa a verificar y la configuraci\'on que se desea verificar (archivo .jpf). JPF devolver\'a un reporte describiendo si las propiedades de la configuraci\'on se mantienen y/o que artefactos de verificaci\'on han sido creados por JPF para su posterior an\'alisis. 
-Un an\'alisis realizado por JPF por defecto (es decir, sin agregarle una configuraci\'on personalizada por el usuario) hace uso de una caracter\'istica importante de JPF: execution choices. JPF puede identificar puntos en el programa donde la ejecuci\'on puede proceder de diferentes maneras, luego explora sistem\'aticamente cada uno de estos puntos, es decir, JPF ejecuta todos los caminos posibles. En cuanto al n\'umero de caminos, puede crecer exponencialmente (esto es llamado como \textit{state explosion problem}). Para lidiar con esto, JPF emplea una linea de defensa llamada chequeo de estados: cada vez que JPF alcanza un punto de elecci\'on, checkea si ya ha visto un estado similar en el programa y en tal caso, abandona ese camino, realiza un vuelta atr\'as a un punto de elecci\'on previo que tenga posibles elecciones no exploradas y procede desde alli. 
-En caso de ejecutar sin una configuraci\'on propia, por defecto JPF verificar\'a el programa en b\'usqueda de deadlocks y excepciones no controladas (unhandled exceptions). Estas son llamadas propiedades non-funcional. Pero como se mencion\'o previamente, el usuario puede definir propiedades espec\'ificas, que en su mayor\'ia, se realizan con los llamados listeners (peque\~nos ‘plugins’ que permiten monitorear con mas detalle todas las acciones que va tomando JPF). Todo explica porque JPF es llamado "a debugger toolbox on steroids", primero autom\'aticamente ejecuta el programa de entrada en todas sus formas posibles para detectar defectos y cuando los encuentra muestra una explicaci\'on de que lo caus\'o. Y luego puede ser extendido en base a la necesidad del usuario.
 
+\subsection{Estructura de la herramienta}
 
-\section{Descripci\'on de la herramienta del lado del usuario}
-
-JPF no presenta interfaz gr\'afica propia, pero permite ser ejecutado de diversas maneras. Se puede utilizar desde la linea de comandos, como asi tambi\'en desde los diversos IDE de desarrollo para Java como NetBeans o Eclipse donde es necesario instalar los plugins correspondientes. M\'as a\'un se puede integrar JPF a un programa de Java como una clase embebida.
-Adem\'as se puede ejecutar desde JUnit el framework de java para escribir Unit Test.
-
-
-\section{Aspectos t\'ecnicos de la herramienta}
-
-JPF fue dise\~nanda en base a dos abstracciones, la VM (m\'aquina virtual), y Search Component.
+JPF fue dise\~nada en base a dos abstracciones, la VM (m\'aquina virtual), y Search Component.
 La encargada de generar los estados es la VM, mediante la ejecuci\'on de instrucciones en Java Byte Code, la VM  genera la representaci\'on de los estados, los cuales pueden ser:
 
 \begin{itemize}
@@ -91,6 +80,17 @@ El n\'umero de las diferentes combinaciones de scheduling crece exponencialmente
 Si \textit{POR} est\'a habilitado, la máquina virtual ejecutar\'a todo el thread en caso de recibir un request forward hasta que ocurra alguna de las siguientes posibilidades: la siguiente instrucci\'on es relevante para el scheduling o bien la siguiente instrucci\'on contiene un resultado no determin\'istico.
 
 JPF tiene manejo expl\'icito de estados, lo realiza creando instancias de la clase SystemState para encapsular informaci\'on relevante para la ejecuci\'on: tales como estado del thread, pila, cola, valores de las variables locales, entre otra informaci\'on.
+
+\subsection{Ejecuci\'on de la herramienta}
+
+Un an\'alisis realizado por JPF por defecto (es decir, sin agregarle una configuraci\'on personalizada por el usuario) hace uso de una caracter\'istica importante de JPF: execution choices. JPF puede identificar puntos en el programa donde la ejecuci\'on puede proceder de diferentes maneras, luego explora sistem\'aticamente cada uno de estos puntos, es decir, JPF ejecuta todos los caminos posibles. En cuanto al n\'umero de caminos, puede crecer exponencialmente (esto es llamado como \textit{state explosion problem}). Para lidiar con esto, JPF emplea una linea de defensa llamada chequeo de estados: cada vez que JPF alcanza un punto de elecci\'on, checkea si ya ha visto un estado similar en el programa y en tal caso, abandona ese camino, realiza un vuelta atr\'as a un punto de elecci\'on previo que tenga posibles elecciones no exploradas y procede desde alli. 
+En caso de ejecutar sin una configuraci\'on propia, por defecto JPF verificar\'a el programa en b\'usqueda de deadlocks y excepciones no controladas (unhandled exceptions). Estas son llamadas propiedades non-funcional. Pero como se mencion\'o previamente, el usuario puede definir propiedades espec\'ificas, que en su mayor\'ia, se realizan con los llamados listeners (peque\~nos ‘plugins’ que permiten monitorear con mas detalle todas las acciones que va tomando JPF). Todo explica porque JPF es llamado "a debugger toolbox on steroids", primero autom\'aticamente ejecuta el programa de entrada en todas sus formas posibles para detectar defectos y cuando los encuentra muestra una explicaci\'on de que lo caus\'o. Y luego puede ser extendido en base a la necesidad del usuario.
+
+
+\section{Descripci\'on de la herramienta del lado del usuario}
+
+JPF no presenta interfaz gr\'afica propia, pero permite ser ejecutado de diversas maneras. Se puede utilizar desde la linea de comandos, como asi tambi\'en desde los diversos IDE de desarrollo para Java como NetBeans o Eclipse donde es necesario instalar los plugins correspondientes. M\'as a\'un se puede integrar JPF a un programa de Java como una clase embebida.
+Adem\'as se puede ejecutar desde JUnit el framework de java para escribir Unit Test.
 
 
 \section{Casos de estudio de la herramienta}
