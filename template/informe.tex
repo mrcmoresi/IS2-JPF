@@ -47,10 +47,13 @@ Dado lo vers\'atil de la herramienta, decidimos acotar la investigaci\'on s\'olo
 %
 %
 %
-\section{Contexto de creaci\'on de la herramienta}
+\section{Introducci\'on}
 
-Java Path Finder, tambi\'en como conocido como JPF,  se comenz\'o a desarrollar en el a\~no  1999 como un traductor de Java a Promela[1] (usando Spin[2] como model checker). Para el a\~no 2000, se convirti\'o en una herramienta de model checker por si sola, dejando de lado la utilizaci\'on de Spin. Las primeras etapas fueron desarrolladas por el grupo Robust Software Engineering en la NASA Ames Research Center, junto con el apoyo de organizaciones tales como RIACS (The Research Institute for Advanced Computer Science).
+En sistemas críticos es fundamental asegurar el cumplimiento de ciertas características tanto funcionales como operacionales. Para ello, a lo largo del tiempo se han desarrollado diferentes herramientas de model checking que permiten verificar los programas para asegurar estas características. En el a\~no  1999 Java Path Finder, tambi\'en conocido como JPF,  se comenz\'o a desarrollar como un traductor de Java a Promela[1] (usando Spin[2] como model checker). Para el a\~no 2000, se convirti\'o en una herramienta de model checker por si sola, dejando de lado la utilizaci\'on de Spin. Las primeras etapas fueron desarrolladas por el grupo Robust Software Engineering en la NASA Ames Research Center, junto con el apoyo de organizaciones tales como RIACS (The Research Institute for Advanced Computer Science).
 En el a\~no 2005 se convirti\'o en una herramienta de c\'odigo abierto. Actualmente, se encuentra disponible de manera gratuita y en desarrollo continuo gracias al apoyo de m\'as de 20 universidades de todo el mundo.
+
+En la secci\'on 2 se describe los objetivos de la herramienta, como esta estructurada y como realiza su ejecuci\'on. En la secci\'on 3 se desarrolla una breve descripción de la herramienta del lado del usuario. En la secci\'on 4 se mencionan algunos casos de estudio, haciendo foco en el proyecto NASA Ames K9 Rover. En la secci\'on 5 se realiza una comparaci\'on con la herramienta de model checking LTSA. Por \'ultimo, en la secci\'on 6, se brindan conclusiones sobre la herramienta.
+
 
 \begin{figure}
 \includegraphics[width=\textwidth]{fig1.png}
