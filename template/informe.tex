@@ -103,7 +103,7 @@ Por \'ultimo, podemos mencionar algunos casos de estudios realizados en \textit{
 JPF para dispositivos Android[7] es un proyecto de Google Summer of Code 2016 que pretende incorporar JPF en android, brindando t\'ecnicas de verificaci\'on para encontrar bugs en aplicaciones android.\\
 Scalable Parallel Model Checking via Monte-Carlo Tree Search[8], es un trabajo en el cual se present\'o MCTS, una estrategia basada en b\'usqueda paralela para Model Checking utilizando JPF.\\
 
-\section{Caso de estudio elegido}
+\subsection{Caso de estudio elegido}
 A continuaci\'on explicaremos el caso de estudio elegido, donde el objetivo del mismo fue comparar 3 tecnicas diferentes (\textit{Model Checking}(MC), \textit{Runtime Analysis}(RA) y \textit{Testing}(TT)), para detectar bugs como \textit{Deadlocks}, \textit{Data Race} y \textit{Plan Semantics} sobre 3 versiones del codigo del NASA Ames K9 Rover[3].
 Dada la complejidad de crear un experimento como este, result\'o imposible reportar conclusiones v\'alidas de manera est\'atica, por eso s\'olo se concentraron en los resultados de MC, RA y TT. Cabe destacar que la herramienta utilizada para realizar MC fue JPF, y haremos foco en el uso de la misma, aunque el an\'alisis que se realiza en este caso de estudio surge de la comparaci\'on con las otras t\'ecnicas mencionadas.
 
